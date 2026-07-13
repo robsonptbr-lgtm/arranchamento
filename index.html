@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Arranchamento</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Controle de Arranchamento</h1>
+
+<table>
+
+<tr>
+<th>Número</th>
+<th>Nome</th>
+<th>Café</th>
+<th>Almoço</th>
+<th>Janta</th>
+</tr>
+
+
+{% for m in militares %}
+
+<tr>
+
+<td>{{m.numero}}</td>
+
+<td>{{m.nome}}</td>
+
+<td>{{"✓" if m.cafe else "-"}}</td>
+
+<td>{{"✓" if m.almoco else "-"}}</td>
+
+<td>{{"✓" if m.janta else "-"}}</td>
+
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+<h2>Adicionar</h2>
+
+<form action="/adicionar" method="post">
+
+<input name="numero" placeholder="Número">
+
+<input name="nome" placeholder="Nome">
+
+<br>
+
+<label>
+<input type="checkbox" name="cafe">
+Café
+</label>
+
+<label>
+<input type="checkbox" name="almoco">
+Almoço
+</label>
+
+<label>
+<input type="checkbox" name="janta">
+Janta
+</label>
+
+
+<button>
+Salvar
+</button>
+
+</form>
+
+
+</body>
+</html>
