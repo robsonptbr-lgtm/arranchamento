@@ -50,11 +50,13 @@ def adicionar():
 
     banco.execute("""
     INSERT INTO militares
-(numero,nome,dia,request.form["dia"],cafe,almoco,janta)    VALUES (?,?,?,?,?)
+    (numero, nome, dia, cafe, almoco, janta)
+    VALUES (?, ?, ?, ?, ?, ?)
     """,
     (
         request.form["numero"],
         request.form["nome"],
+        request.form["dia"],
         1 if "cafe" in request.form else 0,
         1 if "almoco" in request.form else 0,
         1 if "janta" in request.form else 0
@@ -63,8 +65,7 @@ def adicionar():
     banco.commit()
     banco.close()
 
-    return redirect("/")
-@app.route("/excluir/<int:id>")
+    return redirect("/")@app.route("/excluir/<int:id>")
 def excluir(id):
 
     banco = conectar()
