@@ -60,12 +60,12 @@ def adicionar():
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """,
     (
-        request.form["numero"],
-        request.form["nome"],
-        request.form["dia"],
-        request.form["data"],
-        request.form["alojamento"],
-        request.form["status"],
+        request.form.get("numero"),
+        request.form.get("nome"),
+        request.form.get("dia"),
+        request.form.get("data"),
+        request.form.get("alojamento"),
+        request.form.get("status"),
         1 if "cafe" in request.form else 0,
         1 if "almoco" in request.form else 0,
         1 if "janta" in request.form else 0
@@ -114,12 +114,12 @@ def editar(id):
         WHERE id=?
         """,
         (
-            request.form["numero"],
-            request.form["nome"],
-            request.form["dia"],
-            request.form["data"],
-            request.form["alojamento"],
-            request.form["status"],
+            request.form.get("numero"),
+            request.form.get("nome"),
+            request.form.get("dia"),
+            request.form.get("data"),
+            request.form.get("alojamento"),
+            request.form.get("status"),
             1 if "cafe" in request.form else 0,
             1 if "almoco" in request.form else 0,
             1 if "janta" in request.form else 0,
