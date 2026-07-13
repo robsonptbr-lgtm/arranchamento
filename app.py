@@ -3,6 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
+
 def conectar():
     banco = sqlite3.connect("arranchamento.db")
     banco.row_factory = sqlite3.Row
@@ -26,6 +27,8 @@ def criar_banco():
 
     banco.commit()
     banco.close()
+
+
 @app.route("/")
 def inicio():
 
@@ -65,7 +68,10 @@ def adicionar():
     banco.commit()
     banco.close()
 
-    return redirect("/")@app.route("/excluir/<int:id>")
+    return redirect("/")
+
+
+@app.route("/excluir/<int:id>")
 def excluir(id):
 
     banco = conectar()
@@ -81,7 +87,7 @@ def excluir(id):
     return redirect("/")
 
 
-@app.route("/editar/<int:id>", methods=["GET","POST"])
+@app.route("/editar/<int:id>", methods=["GET", "POST"])
 def editar(id):
 
     banco = conectar()
@@ -92,6 +98,7 @@ def editar(id):
         UPDATE militares SET
         numero=?,
         nome=?,
+        dia=?,
         cafe=?,
         almoco=?,
         janta=?
@@ -100,6 +107,7 @@ def editar(id):
         (
             request.form["numero"],
             request.form["nome"],
+            request.form["dia"],
             1 if "cafe" in request.form else 0,
             1 if "almoco" in request.form else 0,
             1 if "janta" in request.form else 0,
@@ -124,8 +132,12 @@ def editar(id):
         militar=militar
     )
 
+
 criar_banco()
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(
+        host="0.0.0.0",
+        port=5000
+    )
