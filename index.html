@@ -23,29 +23,80 @@
 <hr>
 
 
-<h2>Filtro por dia</h2>
+<h2>Resumo</h2>
+
+<div>
+
+<p>
+Total arranchados:
+<b>{{ total }}</b>
+</p>
+
+<p>
+Café:
+<b>{{ cafe }}</b>
+</p>
+
+<p>
+Almoço:
+<b>{{ almoco }}</b>
+</p>
+
+<p>
+Janta:
+<b>{{ janta }}</b>
+</p>
+
+</div>
+
+
+<hr>
+
+
+<h2>Pesquisa e Filtro</h2>
+
 
 <form method="get" action="/">
 
-<select name="dia">
 
-<option value="Todos">Todos</option>
-<option>Segunda</option>
-<option>Terça</option>
-<option>Quarta</option>
-<option>Quinta</option>
-<option>Sexta</option>
-<option>Sábado</option>
-<option>Domingo</option>
+<label>
+Pesquisar nome ou número:
+</label>
 
-</select>
+<br>
+
+<input
+type="text"
+name="busca"
+placeholder="Digite nome ou número"
+>
+
+
+<br><br>
+
+
+<label>
+Filtrar por data:
+</label>
+
+<br>
+
+<input
+type="date"
+name="data"
+>
+
+
+<br><br>
 
 
 <button type="submit">
-Filtrar
+Buscar
 </button>
 
+
 </form>
+
 
 
 <hr>
@@ -61,10 +112,9 @@ Filtrar
 
 <br>
 
-<input 
+<input
 type="text"
 name="numero"
-placeholder="Número"
 required
 >
 
@@ -76,10 +126,9 @@ required
 
 <br>
 
-<input 
+<input
 type="text"
 name="nome"
-placeholder="Nome"
 required
 >
 
@@ -111,7 +160,7 @@ required
 
 <br>
 
-<input 
+<input
 type="date"
 name="data"
 required
@@ -142,7 +191,7 @@ Almoço
 </label>
 
 
-br>
+<br>
 
 
 <label>
@@ -172,7 +221,7 @@ Salvar
 
 
 
-<h2>Lista de Arranchamento</h2>
+<h2>Lista</h2>
 
 
 
@@ -221,37 +270,31 @@ Salvar
 
 
 <td>
-
 {% if m.cafe %}
 ✓
 {% else %}
 -
 {% endif %}
-
 </td>
 
 
 
 <td>
-
 {% if m.almoco %}
 ✓
 {% else %}
 -
 {% endif %}
-
 </td>
 
 
 
 <td>
-
 {% if m.janta %}
 ✓
 {% else %}
 -
 {% endif %}
-
 </td>
 
 
@@ -279,6 +322,7 @@ Excluir
 
 
 {% endfor %}
+
 
 
 </table>

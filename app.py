@@ -30,29 +30,57 @@ def criar_banco():
     banco.close()
 
 
+
 @app.route("/")
 def inicio():
 
-    dia = request.args.get("dia")
+    data = request.args.get("data")
+    busca = request.args.get("busca")
 
     banco = conectar()
 
-    if dia and dia != "Todos":
-        militares = banco.execute(
-            "SELECT * FROM militares WHERE dia=?",
-            (dia,)
-        ).fetchall()
-    else:
-        militares = banco.execute(
-            "SELECT * FROM militares"
-        ).fetchall()
+    consulta = "SELECT * FROM militares WHERE 1=1"
+    valores = []
+
+
+    if data:
+        consulta += " AND data=?"
+        valores.append(data)
+
+
+    if busca:
+        consulta += " AND (nome LIKE ? OR numero LIKE ?)"
+        valores.append("%" + busca + "%")
+        valores.append("%" + busca + "%")
+
+
+    militares = banco.execute(
+        consulta,
+        valores
+    ).fetchall()
+
+
+    total = len(militares)
+
+    cafe = sum(m["cafe"] for m in militares)
+
+    almoco = sum(m["almoco"] for m in militares)
+
+    janta = sum(m["janta"] for m in militares)
+
 
     banco.close()
 
+
     return render_template(
         "index.html",
-        militares=militares
+        militares=militares,
+        total=total,
+        cafe=cafe,
+        almoco=almoco,
+        janta=janta
     )
+
 
 
 @app.route("/adicionar", methods=["POST"])
@@ -62,8 +90,8 @@ def adicionar():
 
     banco.execute("""
     INSERT INTO militares
-    (numero, nome, dia, data, cafe, almoco, janta)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    (numero,nome,dia,data,cafe,almoco,janta)
+    VALUES (?,?,?,?,?,?,?)
     """,
     (
         request.form.get("numero"),
@@ -75,10 +103,13 @@ def adicionar():
         1 if "janta" in request.form else 0
     ))
 
+
     banco.commit()
     banco.close()
 
+
     return redirect("/")
+
 
 
 @app.route("/excluir/<int:id>")
@@ -97,10 +128,12 @@ def excluir(id):
     return redirect("/")
 
 
-@app.route("/editar/<int:id>", methods=["GET", "POST"])
+
+@app.route("/editar/<int:id>", methods=["GET","POST"])
 def editar(id):
 
     banco = conectar()
+
 
     if request.method == "POST":
 
@@ -137,12 +170,15 @@ def editar(id):
         (id,)
     ).fetchone()
 
+
     banco.close()
+
 
     return render_template(
         "editar.html",
         militar=militar
     )
+
 
 
 criar_banco()
