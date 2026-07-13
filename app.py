@@ -32,17 +32,26 @@ def criar_banco():
 @app.route("/")
 def inicio():
 
+    dia = request.args.get("dia")
+
     banco = conectar()
 
-    militares = banco.execute(
-        "SELECT * FROM militares"
-    ).fetchall()
+    if dia and dia != "Todos":
+        militares = banco.execute(
+            "SELECT * FROM militares WHERE dia=?",
+            (dia,)
+        ).fetchall()
+    else:
+        militares = banco.execute(
+            "SELECT * FROM militares"
+        ).fetchall()
 
     banco.close()
 
     return render_template(
         "index.html",
-        militares=militares
+        militares=militares,
+        dia_selecionado=dia
     )
 
 
