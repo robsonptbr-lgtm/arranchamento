@@ -10,7 +10,15 @@
 
 <h1>Controle de Arranchamento</h1>
 
-<table>
+<input 
+type="text" 
+id="pesquisa" 
+placeholder="Pesquisar..."
+onkeyup="filtrar()"
+>
+
+
+<table id="tabela">
 
 <tr>
 <th>Número</th>
@@ -18,6 +26,7 @@
 <th>Café</th>
 <th>Almoço</th>
 <th>Janta</th>
+<th>Ações</th>
 </tr>
 
 
@@ -35,15 +44,27 @@
 
 <td>{{"✓" if m.janta else "-"}}</td>
 
+<td>
+
+<a href="/editar/{{m.id}}">
+<button>Editar</button>
+</a>
+
+<a href="/excluir/{{m.id}}">
+<button>Excluir</button>
+</a>
+
+</td>
+
 </tr>
 
 {% endfor %}
 
-
 </table>
 
 
-<h2>Adicionar</h2>
+<h2>Adicionar Militar</h2>
+
 
 <form action="/adicionar" method="post">
 
@@ -51,7 +72,6 @@
 
 <input name="nome" placeholder="Nome">
 
-<br>
 
 <label>
 <input type="checkbox" name="cafe">
@@ -74,6 +94,34 @@ Salvar
 </button>
 
 </form>
+
+
+<script>
+
+function filtrar(){
+
+let texto =
+document.getElementById("pesquisa").value.toLowerCase();
+
+let linhas =
+document.querySelectorAll("#tabela tr");
+
+
+linhas.forEach((linha,index)=>{
+
+if(index==0)return;
+
+linha.style.display =
+linha.innerText.toLowerCase()
+.includes(texto)
+? ""
+: "none";
+
+});
+
+}
+
+</script>
 
 
 </body>
