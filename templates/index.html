@@ -29,20 +29,24 @@
 
 <h2>Resumo</h2>
 
+
 <p>
 Total arranchados:
 <b>{{ total }}</b>
 </p>
+
 
 <p>
 Café:
 <b>{{ cafe }}</b>
 </p>
 
+
 <p>
 Almoço:
 <b>{{ almoco }}</b>
 </p>
+
 
 <p>
 Janta:
@@ -50,7 +54,9 @@ Janta:
 </p>
 
 
+
 <hr>
+
 
 
 <h2>Pesquisa e Filtro</h2>
@@ -63,7 +69,9 @@ Janta:
 Pesquisar nome ou número:
 </label>
 
+
 <br>
+
 
 <input
 type="text"
@@ -72,14 +80,18 @@ placeholder="Digite nome ou número"
 >
 
 
+
 <br><br>
+
 
 
 <label>
 Filtrar por data:
 </label>
 
+
 <br>
+
 
 <input
 type="date"
@@ -87,7 +99,9 @@ name="data"
 >
 
 
+
 <br><br>
+
 
 
 <button type="submit">
@@ -99,66 +113,71 @@ Buscar
 
 
 
+
 <hr>
+
+
 
 
 <h2>Adicionar Militar</h2>
 
 
+
 <form action="/adicionar" method="post">
 
 
-<label>Número:</label>
+
+<label>
+Número:
+</label>
+
 
 <br>
+
 
 <input
 type="text"
 name="numero"
+placeholder="Número"
 required
 >
+
 
 
 <br><br>
 
 
-<label>Nome:</label>
+
+
+<label>
+Nome:
+</label>
+
 
 <br>
+
 
 <input
 type="text"
 name="nome"
+placeholder="Nome"
 required
 >
 
 
-<br><br>
-
-
-<label>Dia:</label>
-
-<br>
-
-<select name="dia">
-
-<option>Segunda</option>
-<option>Terça</option>
-<option>Quarta</option>
-<option>Quinta</option>
-<option>Sexta</option>
-<option>Sábado</option>
-<option>Domingo</option>
-
-</select>
-
 
 <br><br>
 
 
-<label>Data:</label>
+
+
+<label>
+Data:
+</label>
+
 
 <br>
+
 
 <input
 type="date"
@@ -167,12 +186,19 @@ required
 >
 
 
+
 <br><br>
+
+
+
 
 
 <label>
 
-<input type="checkbox" name="cafe">
+<input 
+type="checkbox"
+name="cafe"
+>
 
 Café
 
@@ -182,9 +208,13 @@ Café
 <br>
 
 
+
 <label>
 
-<input type="checkbox" name="almoco">
+<input 
+type="checkbox"
+name="almoco"
+>
 
 Almoço
 
@@ -194,16 +224,23 @@ Almoço
 <br>
 
 
+
 <label>
 
-<input type="checkbox" name="janta">
+<input 
+type="checkbox"
+name="janta"
+>
 
 Janta
 
 </label>
 
 
+
 <br><br>
+
+
 
 
 <button type="submit">
@@ -213,7 +250,10 @@ Salvar
 </button>
 
 
+
 </form>
+
+
 
 
 
@@ -221,7 +261,9 @@ Salvar
 
 
 
+
 <h2>Lista de Arranchamento</h2>
+
 
 
 
@@ -234,8 +276,6 @@ Salvar
 
 <th>Nome</th>
 
-<th>Dia</th>
-
 <th>Data</th>
 
 <th>Café</th>
@@ -246,26 +286,36 @@ Salvar
 
 <th>Ações</th>
 
+
 </tr>
+
 
 
 
 {% for m in militares %}
 
 
+
 <tr>
 
 
-<td>{{m.numero}}</td>
+
+<td>
+{{m.numero}}
+</td>
 
 
-<td>{{m.nome}}</td>
+
+<td>
+{{m.nome}}
+</td>
 
 
-<td>{{m.dia}}</td>
 
+<td>
+{{m.data}}
+</td>
 
-<td>{{m.data}}</td>
 
 
 
@@ -281,6 +331,7 @@ Salvar
 
 
 
+
 <td>
 
 {% if m.almoco %}
@@ -290,6 +341,7 @@ Salvar
 {% endif %}
 
 </td>
+
 
 
 
@@ -305,29 +357,39 @@ Salvar
 
 
 
+
 <td>
 
+
 <a href="/editar/{{m.id}}">
+
 <button>
 Editar
 </button>
+
 </a>
 
 
+
 <a href="/excluir/{{m.id}}">
+
 <button>
 Excluir
 </button>
+
 </a>
 
 
 </td>
 
 
+
 </tr>
 
 
+
 {% endfor %}
+
 
 
 
@@ -335,19 +397,22 @@ Excluir
 
 
 
+
 <script>
 
 if ("serviceWorker" in navigator) {
 
-    navigator.serviceWorker.register(
-        "/static/service-worker.js"
-    );
+navigator.serviceWorker.register(
+"/static/service-worker.js"
+);
 
 }
 
 </script>
 
 
+
 </body>
+
 
 </html>
