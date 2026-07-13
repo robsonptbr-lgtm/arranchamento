@@ -1,32 +1,180 @@
-body{
-font-family:Arial;
-background:#111;
-color:white;
-padding:20px;
+* {
+    box-sizing: border-box;
 }
 
-h1{
-text-align:center;
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 15px;
+
+    background: #f2f2f2;
+
 }
 
-table{
-width:100%;
-border-collapse:collapse;
+
+h1 {
+
+    text-align: center;
+
+    font-size: 26px;
+
 }
 
-td,th{
-border:1px solid white;
-padding:10px;
-text-align:center;
+
+h2 {
+
+    font-size: 20px;
+
 }
 
-input,button{
-padding:10px;
-margin:5px;
+
+form {
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
 }
 
-button{
-background:#0066ff;
-color:white;
-border:0;
+
+input,
+select,
+button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 8px;
+
+    font-size: 16px;
+
+}
+
+
+button {
+
+    background: #0066cc;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+button:hover {
+
+    opacity: 0.8;
+
+}
+
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: white;
+
+    font-size: 14px;
+
+}
+
+
+th {
+
+    background: #0066cc;
+
+    color: white;
+
+}
+
+
+th,
+td {
+
+    padding: 8px;
+
+    text-align: center;
+
+    border: 1px solid #ddd;
+
+}
+
+
+
+table {
+
+    display: block;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+
+}
+
+
+
+a button {
+
+    width: auto;
+
+    padding: 8px;
+
+    font-size: 14px;
+
+}
+
+
+
+@media (max-width: 600px) {
+
+
+    body {
+
+        padding: 10px;
+
+    }
+
+
+    h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    table {
+
+        font-size: 12px;
+
+    }
+
+
+    .resumo {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+    }
+
+
 }
