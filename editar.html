@@ -1,44 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
-<title>Editar Militar</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Editar Arranchamento</title>
+
 <link rel="stylesheet" href="/static/style.css">
+
 </head>
+
 
 <body>
 
+
 <h1>Editar Militar</h1>
 
-<form method="post">
 
-<input name="numero" value="{{militar.numero}}">
+<form action="/editar/{{militar.id}}" method="post">
 
-<input name="nome" value="{{militar.nome}}">
+
+<input 
+type="text"
+name="numero"
+value="{{militar.numero}}"
+placeholder="Número"
+required
+>
+
+
+<input 
+type="text"
+name="nome"
+value="{{militar.nome}}"
+placeholder="Nome"
+required
+>
+
 
 
 <label>
-<input type="checkbox" name="cafe" {% if militar.cafe %}checked{% endif %}>
+Dia:
+</label>
+
+
+<select name="dia">
+
+
+<option>{{militar.dia}}</option>
+
+<option>Segunda</option>
+<option>Terça</option>
+<option>Quarta</option>
+<option>Quinta</option>
+<option>Sexta</option>
+<option>Sábado</option>
+<option>Domingo</option>
+
+
+</select>
+
+
+
+<br><br>
+
+
+
+<label>
+Data:
+</label>
+
+
+<input
+type="date"
+name="data"
+value="{{militar.data}}"
+required
+>
+
+
+
+<br><br>
+
+
+
+<input
+type="text"
+name="alojamento"
+value="{{militar.alojamento}}"
+placeholder="Alojamento"
+>
+
+
+
+<br><br>
+
+
+
+<label>
+Status:
+</label>
+
+
+<select name="status">
+
+
+<option>{{militar.status}}</option>
+
+<option>Confirmado</option>
+
+<option>Pendente</option>
+
+<option>Cancelado</option>
+
+
+</select>
+
+
+
+<br><br>
+
+
+
+<label>
+
+<input 
+type="checkbox"
+name="cafe"
+{% if militar.cafe %}checked{% endif %}
+>
+
 Café
+
 </label>
 
 
+
 <label>
-<input type="checkbox" name="almoco" {% if militar.almoco %}checked{% endif %}>
+
+<input 
+type="checkbox"
+name="almoco"
+{% if militar.almoco %}checked{% endif %}
+>
+
 Almoço
+
 </label>
+
 
 
 <label>
-<input type="checkbox" name="janta" {% if militar.janta %}checked{% endif %}>
+
+<input 
+type="checkbox"
+name="janta"
+{% if militar.janta %}checked{% endif %}
+>
+
 Janta
+
 </label>
 
 
-<button>
-Salvar alteração
+
+<br><br>
+
+
+
+<button type="submit">
+
+Salvar Alterações
+
 </button>
+
+
 
 </form>
 
+
+
+<br>
+
+
+<a href="/">
+
+Voltar
+
+</a>
+
+
+
 </body>
+
 </html>

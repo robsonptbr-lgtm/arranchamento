@@ -1,85 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Arranchamento</title>
+
 <link rel="stylesheet" href="/static/style.css">
+
 </head>
+
 
 <body>
 
+
 <h1>Controle de Arranchamento</h1>
-<form method="get">
 
-<select name="dia">
 
-<option>Todos</option>
-<option>Segunda</option>
-<option>Terça</option>
-<option>Quarta</option>
-<option>Quinta</option>
-<option>Sexta</option>
-<option>Sábado</option>
-<option>Domingo</option>
-
-</select>
-
-<button type="submit">
-Filtrar
+<a href="/">
+<button>
+Atualizar
 </button>
-
-</form>
-<input 
-type="text" 
-id="pesquisa" 
-placeholder="Pesquisar..."
-onkeyup="filtrar()"
->
-
-
-<table id="tabela">
-
-<tr>
-<th>Número</th>
-<th>Nome</th>
-<th>Café</th>
-<th>Almoço</th>
-<th>Janta</th>
-<th>Ações</th>
-</tr>
-
-
-{% for m in militares %}
-
-<tr>
-
-<td>{{m.numero}}</td>
-
-<td>{{m.nome}}</td>
-
-<td>{{"✓" if m.cafe else "-"}}</td>
-
-<td>{{"✓" if m.almoco else "-"}}</td>
-
-<td>{{"✓" if m.janta else "-"}}</td>
-
-<td>
-
-<a href="/editar/{{m.id}}">
-<button>Editar</button>
 </a>
 
-<a href="/excluir/{{m.id}}">
-<button>Excluir</button>
-</a>
 
-</td>
-
-</tr>
-
-{% endfor %}
-
-</table>
+<hr>
 
 
 <h2>Adicionar Militar</h2>
@@ -87,9 +35,26 @@ onkeyup="filtrar()"
 
 <form action="/adicionar" method="post">
 
-<input name="numero" placeholder="Número">
 
-<input name="nome" placeholder="Nome">
+<input 
+type="text"
+name="numero"
+placeholder="Número"
+required
+>
+
+
+<input 
+type="text"
+name="nome"
+placeholder="Nome"
+required
+>
+
+
+<label>
+Dia:
+</label>
 
 <select name="dia">
 
@@ -102,56 +67,204 @@ onkeyup="filtrar()"
 <option>Domingo</option>
 
 </select>
+
+
+<br><br>
+
+
 <label>
-<input type="checkbox" name="cafe">
+Data:
+</label>
+
+<input 
+type="date"
+name="data"
+required
+>
+
+
+<br><br>
+
+
+<input
+type="text"
+name="alojamento"
+placeholder="Alojamento"
+>
+
+
+<br><br>
+
+
+<label>
+Status:
+</label>
+
+<select name="status">
+
+<option>Confirmado</option>
+<option>Pendente</option>
+<option>Cancelado</option>
+
+</select>
+
+
+<br><br>
+
+
+<label>
+
+<input 
+type="checkbox"
+name="cafe"
+>
+
 Café
+
 </label>
 
+
+
 <label>
-<input type="checkbox" name="almoco">
+
+<input 
+type="checkbox"
+name="almoco"
+>
+
 Almoço
+
 </label>
+
+
 
 <label>
-<input type="checkbox" name="janta">
+
+<input 
+type="checkbox"
+name="janta"
+>
+
 Janta
+
 </label>
 
 
-<button>
+<br><br>
+
+
+<button type="submit">
 Salvar
 </button>
+
 
 </form>
 
 
-<script>
 
-function filtrar(){
-
-let texto =
-document.getElementById("pesquisa").value.toLowerCase();
-
-let linhas =
-document.querySelectorAll("#tabela tr");
+<hr>
 
 
-linhas.forEach((linha,index)=>{
 
-if(index==0)return;
+<h2>Lista de Arranchamento</h2>
 
-linha.style.display =
-linha.innerText.toLowerCase()
-.includes(texto)
-? ""
-: "none";
 
-});
 
-}
+<table border="1">
 
-</script>
+
+<tr>
+
+<th>Número</th>
+<th>Nome</th>
+<th>Dia</th>
+<th>Data</th>
+<th>Alojamento</th>
+<th>Status</th>
+<th>Café</th>
+<th>Almoço</th>
+<th>Janta</th>
+<th>Ações</th>
+
+</tr>
+
+
+
+{% for m in militares %}
+
+
+<tr>
+
+
+<td>{{m.numero}}</td>
+
+<td>{{m.nome}}</td>
+
+<td>{{m.dia}}</td>
+
+<td>{{m.data}}</td>
+
+<td>{{m.alojamento}}</td>
+
+<td>{{m.status}}</td>
+
+
+<td>
+{% if m.cafe %}
+✓
+{% else %}
+-
+{% endif %}
+</td>
+
+
+<td>
+{% if m.almoco %}
+✓
+{% else %}
+-
+{% endif %}
+</td>
+
+
+<td>
+{% if m.janta %}
+✓
+{% else %}
+-
+{% endif %}
+</td>
+
+
+
+<td>
+
+<a href="/editar/{{m.id}}">
+<button>
+Editar
+</button>
+</a>
+
+
+<a href="/excluir/{{m.id}}">
+<button>
+Excluir
+</button>
+</a>
+
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</table>
 
 
 </body>
+
 </html>
