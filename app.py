@@ -19,6 +19,9 @@ def criar_banco():
         numero TEXT,
         nome TEXT,
         dia TEXT,
+        data TEXT,
+        alojamento TEXT,
+        status TEXT,
         cafe INTEGER,
         almoco INTEGER,
         janta INTEGER
@@ -32,26 +35,17 @@ def criar_banco():
 @app.route("/")
 def inicio():
 
-    dia = request.args.get("dia")
-
     banco = conectar()
 
-    if dia and dia != "Todos":
-        militares = banco.execute(
-            "SELECT * FROM militares WHERE dia=?",
-            (dia,)
-        ).fetchall()
-    else:
-        militares = banco.execute(
-            "SELECT * FROM militares"
-        ).fetchall()
+    militares = banco.execute(
+        "SELECT * FROM militares"
+    ).fetchall()
 
     banco.close()
 
     return render_template(
         "index.html",
-        militares=militares,
-        dia_selecionado=dia
+        militares=militares
     )
 
 
@@ -62,13 +56,16 @@ def adicionar():
 
     banco.execute("""
     INSERT INTO militares
-    (numero, nome, dia, cafe, almoco, janta)
-    VALUES (?, ?, ?, ?, ?, ?)
+    (numero, nome, dia, data, alojamento, status, cafe, almoco, janta)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """,
     (
         request.form["numero"],
         request.form["nome"],
         request.form["dia"],
+        request.form["data"],
+        request.form["alojamento"],
+        request.form["status"],
         1 if "cafe" in request.form else 0,
         1 if "almoco" in request.form else 0,
         1 if "janta" in request.form else 0
@@ -108,6 +105,9 @@ def editar(id):
         numero=?,
         nome=?,
         dia=?,
+        data=?,
+        alojamento=?,
+        status=?,
         cafe=?,
         almoco=?,
         janta=?
@@ -117,6 +117,9 @@ def editar(id):
             request.form["numero"],
             request.form["nome"],
             request.form["dia"],
+            request.form["data"],
+            request.form["alojamento"],
+            request.form["status"],
             1 if "cafe" in request.form else 0,
             1 if "almoco" in request.form else 0,
             1 if "janta" in request.form else 0,
