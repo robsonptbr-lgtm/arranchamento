@@ -20,8 +20,6 @@ def criar_banco():
         nome TEXT,
         dia TEXT,
         data TEXT,
-        alojamento TEXT,
-        status TEXT,
         cafe INTEGER,
         almoco INTEGER,
         janta INTEGER
@@ -35,11 +33,19 @@ def criar_banco():
 @app.route("/")
 def inicio():
 
+    dia = request.args.get("dia")
+
     banco = conectar()
 
-    militares = banco.execute(
-        "SELECT * FROM militares"
-    ).fetchall()
+    if dia and dia != "Todos":
+        militares = banco.execute(
+            "SELECT * FROM militares WHERE dia=?",
+            (dia,)
+        ).fetchall()
+    else:
+        militares = banco.execute(
+            "SELECT * FROM militares"
+        ).fetchall()
 
     banco.close()
 
@@ -56,16 +62,14 @@ def adicionar():
 
     banco.execute("""
     INSERT INTO militares
-    (numero, nome, dia, data, alojamento, status, cafe, almoco, janta)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (numero, nome, dia, data, cafe, almoco, janta)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
     """,
     (
         request.form.get("numero"),
         request.form.get("nome"),
         request.form.get("dia"),
         request.form.get("data"),
-        request.form.get("alojamento"),
-        request.form.get("status"),
         1 if "cafe" in request.form else 0,
         1 if "almoco" in request.form else 0,
         1 if "janta" in request.form else 0
@@ -106,8 +110,6 @@ def editar(id):
         nome=?,
         dia=?,
         data=?,
-        alojamento=?,
-        status=?,
         cafe=?,
         almoco=?,
         janta=?
@@ -118,8 +120,6 @@ def editar(id):
             request.form.get("nome"),
             request.form.get("dia"),
             request.form.get("data"),
-            request.form.get("alojamento"),
-            request.form.get("status"),
             1 if "cafe" in request.form else 0,
             1 if "almoco" in request.form else 0,
             1 if "janta" in request.form else 0,

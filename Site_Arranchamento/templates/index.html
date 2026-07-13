@@ -20,6 +20,30 @@
 <h1>Controle de Arranchamento</h1>
 
 
+<h2>Filtro por dia</h2>
+
+<form method="get" action="/">
+
+<select name="dia">
+
+<option value="Todos">Todos</option>
+<option value="Segunda">Segunda</option>
+<option value="Terça">Terça</option>
+<option value="Quarta">Quarta</option>
+<option value="Quinta">Quinta</option>
+<option value="Sexta">Sexta</option>
+<option value="Sábado">Sábado</option>
+<option value="Domingo">Domingo</option>
+
+</select>
+
+<button type="submit">
+Filtrar
+</button>
+
+</form>
+
+
 <hr>
 
 
@@ -28,10 +52,6 @@
 
 <form action="/adicionar" method="post">
 
-
-<label>Número:</label>
-
-<br>
 
 <input 
 type="text"
@@ -44,10 +64,6 @@ required
 <br><br>
 
 
-<label>Nome:</label>
-
-<br>
-
 <input 
 type="text"
 name="nome"
@@ -58,10 +74,6 @@ required
 
 <br><br>
 
-
-<label>Dia:</label>
-
-<br>
 
 <select name="dia">
 
@@ -79,9 +91,9 @@ required
 <br><br>
 
 
-<label>Data:</label>
-
-<br>
+<label>
+Data:
+</label>
 
 <input 
 type="date"
@@ -93,77 +105,21 @@ required
 <br><br>
 
 
-<label>Alojamento:</label>
-
-<br>
-
-<input 
-type="text"
-name="alojamento"
-placeholder="Alojamento"
->
-
-
-<br><br>
-
-
-<label>Status:</label>
-
-<br>
-
-<select name="status">
-
-<option>Confirmado</option>
-
-<option>Pendente</option>
-
-<option>Cancelado</option>
-
-</select>
-
-
-<br><br>
-
-
 <label>
-
-<input 
-type="checkbox"
-name="cafe"
->
-
+<input type="checkbox" name="cafe">
 Café
-
 </label>
 
 
-<br>
-
-
 <label>
-
-<input 
-type="checkbox"
-name="almoco"
->
-
+<input type="checkbox" name="almoco">
 Almoço
-
 </label>
 
 
-<br>
-
-
 <label>
-
-<input 
-type="checkbox"
-name="janta"
->
-
+<input type="checkbox" name="janta">
 Janta
-
 </label>
 
 
@@ -171,9 +127,7 @@ Janta
 
 
 <button type="submit">
-
 Salvar
-
 </button>
 
 
@@ -185,8 +139,7 @@ Salvar
 
 
 
-<h2>Lista de Arranchamento</h2>
-
+<h2>Lista</h2>
 
 
 <table border="1">
@@ -195,23 +148,12 @@ Salvar
 <tr>
 
 <th>Número</th>
-
 <th>Nome</th>
-
 <th>Dia</th>
-
 <th>Data</th>
-
-<th>Alojamento</th>
-
-<th>Status</th>
-
 <th>Café</th>
-
 <th>Almoço</th>
-
 <th>Janta</th>
-
 <th>Ações</th>
 
 </tr>
@@ -226,54 +168,38 @@ Salvar
 
 <td>{{m.numero}}</td>
 
-
 <td>{{m.nome}}</td>
 
-
 <td>{{m.dia}}</td>
-
 
 <td>{{m.data}}</td>
 
 
-<td>{{m.alojamento}}</td>
-
-
-<td>{{m.status}}</td>
-
-
 <td>
-
 {% if m.cafe %}
 ✓
 {% else %}
 -
 {% endif %}
-
 </td>
 
 
 <td>
-
 {% if m.almoco %}
 ✓
 {% else %}
 -
 {% endif %}
-
 </td>
 
 
 <td>
-
 {% if m.janta %}
 ✓
 {% else %}
 -
 {% endif %}
-
 </td>
-
 
 
 <td>
@@ -290,7 +216,6 @@ Editar
 Excluir
 </button>
 </a>
-
 
 </td>
 
