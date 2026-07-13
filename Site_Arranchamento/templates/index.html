@@ -11,6 +11,10 @@
 
 <link rel="stylesheet" href="/static/style.css">
 
+<link rel="manifest" href="/static/manifest.json">
+
+<meta name="theme-color" content="#0066cc">
+
 </head>
 
 
@@ -24,8 +28,6 @@
 
 
 <h2>Resumo</h2>
-
-<div>
 
 <p>
 Total arranchados:
@@ -46,8 +48,6 @@ Almoço:
 Janta:
 <b>{{ janta }}</b>
 </p>
-
-</div>
 
 
 <hr>
@@ -221,7 +221,7 @@ Salvar
 
 
 
-<h2>Lista</h2>
+<h2>Lista de Arranchamento</h2>
 
 
 
@@ -270,31 +270,37 @@ Salvar
 
 
 <td>
+
 {% if m.cafe %}
 ✓
 {% else %}
 -
 {% endif %}
+
 </td>
 
 
 
 <td>
+
 {% if m.almoco %}
 ✓
 {% else %}
 -
 {% endif %}
+
 </td>
 
 
 
 <td>
+
 {% if m.janta %}
 ✓
 {% else %}
 -
 {% endif %}
+
 </td>
 
 
@@ -326,6 +332,20 @@ Excluir
 
 
 </table>
+
+
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker.register(
+        "/static/service-worker.js"
+    );
+
+}
+
+</script>
 
 
 </body>
