@@ -13,17 +13,11 @@ def criar_banco():
     banco = conectar()
 
     banco.execute("""
-   CREATE TABLE IF NOT EXISTS militares (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    numero TEXT,
-    nome TEXT,
-    dia TEXT,
-    cafe INTEGER,
-    almoco INTEGER,
-    janta INTEGER
-)        id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE IF NOT EXISTS militares (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         numero TEXT,
         nome TEXT,
+        dia TEXT,
         cafe INTEGER,
         almoco INTEGER,
         janta INTEGER
@@ -32,7 +26,6 @@ def criar_banco():
 
     banco.commit()
     banco.close()
-
 
 @app.route("/")
 def inicio():
