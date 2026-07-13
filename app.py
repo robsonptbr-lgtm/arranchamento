@@ -26,7 +26,6 @@ def criar_banco():
 
     banco.commit()
     banco.close()
-
 @app.route("/")
 def inicio():
 
