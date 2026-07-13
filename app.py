@@ -66,7 +66,64 @@ def adicionar():
     banco.close()
 
     return redirect("/")
+@app.route("/excluir/<int:id>")
+def excluir(id):
 
+    banco = conectar()
+
+    banco.execute(
+        "DELETE FROM militares WHERE id=?",
+        (id,)
+    )
+
+    banco.commit()
+    banco.close()
+
+    return redirect("/")
+
+
+@app.route("/editar/<int:id>", methods=["GET","POST"])
+def editar(id):
+
+    banco = conectar()
+
+    if request.method == "POST":
+
+        banco.execute("""
+        UPDATE militares SET
+        numero=?,
+        nome=?,
+        cafe=?,
+        almoco=?,
+        janta=?
+        WHERE id=?
+        """,
+        (
+            request.form["numero"],
+            request.form["nome"],
+            1 if "cafe" in request.form else 0,
+            1 if "almoco" in request.form else 0,
+            1 if "janta" in request.form else 0,
+            id
+        ))
+
+        banco.commit()
+        banco.close()
+
+        return redirect("/")
+
+
+    militar = banco.execute(
+        "SELECT * FROM militares WHERE id=?",
+        (id,)
+    ).fetchone()
+
+    banco.close()
+
+    return render_template(
+        "editar.html",
+        militar=militar
+    )
 
 criar_banco()
 

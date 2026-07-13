@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Editar Militar</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Editar Militar</h1>
+
+<form method="post">
+
+<input name="numero" value="{{militar.numero}}">
+
+<input name="nome" value="{{militar.nome}}">
+
+
+<label>
+<input type="checkbox" name="cafe" {% if militar.cafe %}checked{% endif %}>
+Café
+</label>
+
+
+<label>
+<input type="checkbox" name="almoco" {% if militar.almoco %}checked{% endif %}>
+Almoço
+</label>
+
+
+<label>
+<input type="checkbox" name="janta" {% if militar.janta %}checked{% endif %}>
+Janta
+</label>
+
+
+<button>
+Salvar alteração
+</button>
+
+</form>
+
+</body>
+</html>
