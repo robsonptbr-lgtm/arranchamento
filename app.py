@@ -13,8 +13,15 @@ def criar_banco():
     banco = conectar()
 
     banco.execute("""
-    CREATE TABLE IF NOT EXISTS militares (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+   CREATE TABLE IF NOT EXISTS militares (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    numero TEXT,
+    nome TEXT,
+    dia TEXT,
+    cafe INTEGER,
+    almoco INTEGER,
+    janta INTEGER
+)        id INTEGER PRIMARY KEY AUTOINCREMENT,
         numero TEXT,
         nome TEXT,
         cafe INTEGER,
@@ -51,8 +58,7 @@ def adicionar():
 
     banco.execute("""
     INSERT INTO militares
-    (numero,nome,cafe,almoco,janta)
-    VALUES (?,?,?,?,?)
+(numero,nome,dia,request.form["dia"],cafe,almoco,janta)    VALUES (?,?,?,?,?)
     """,
     (
         request.form["numero"],
