@@ -20,28 +20,83 @@
 <h1>Controle de Arranchamento</h1>
 
 
-<h2>Filtro por dia</h2>
+<hr>
+
+
+<h2>Resumo</h2>
+
+<div>
+
+<p>
+Total arranchados:
+<b>{{ total }}</b>
+</p>
+
+<p>
+Café:
+<b>{{ cafe }}</b>
+</p>
+
+<p>
+Almoço:
+<b>{{ almoco }}</b>
+</p>
+
+<p>
+Janta:
+<b>{{ janta }}</b>
+</p>
+
+</div>
+
+
+<hr>
+
+
+<h2>Pesquisa e Filtro</h2>
+
 
 <form method="get" action="/">
 
-<select name="dia">
 
-<option value="Todos">Todos</option>
-<option value="Segunda">Segunda</option>
-<option value="Terça">Terça</option>
-<option value="Quarta">Quarta</option>
-<option value="Quinta">Quinta</option>
-<option value="Sexta">Sexta</option>
-<option value="Sábado">Sábado</option>
-<option value="Domingo">Domingo</option>
+<label>
+Pesquisar nome ou número:
+</label>
 
-</select>
+<br>
+
+<input
+type="text"
+name="busca"
+placeholder="Digite nome ou número"
+>
+
+
+<br><br>
+
+
+<label>
+Filtrar por data:
+</label>
+
+<br>
+
+<input
+type="date"
+name="data"
+>
+
+
+<br><br>
+
 
 <button type="submit">
-Filtrar
+Buscar
 </button>
 
+
 </form>
+
 
 
 <hr>
@@ -53,10 +108,13 @@ Filtrar
 <form action="/adicionar" method="post">
 
 
-<input 
+<label>Número:</label>
+
+<br>
+
+<input
 type="text"
 name="numero"
-placeholder="Número"
 required
 >
 
@@ -64,16 +122,23 @@ required
 <br><br>
 
 
-<input 
+<label>Nome:</label>
+
+<br>
+
+<input
 type="text"
 name="nome"
-placeholder="Nome"
 required
 >
 
 
 <br><br>
 
+
+<label>Dia:</label>
+
+<br>
 
 <select name="dia">
 
@@ -91,11 +156,11 @@ required
 <br><br>
 
 
-<label>
-Data:
-</label>
+<label>Data:</label>
 
-<input 
+<br>
+
+<input
 type="date"
 name="data"
 required
@@ -106,20 +171,35 @@ required
 
 
 <label>
+
 <input type="checkbox" name="cafe">
+
 Café
+
 </label>
 
 
+<br>
+
+
 <label>
+
 <input type="checkbox" name="almoco">
+
 Almoço
+
 </label>
 
 
+<br>
+
+
 <label>
+
 <input type="checkbox" name="janta">
+
 Janta
+
 </label>
 
 
@@ -127,7 +207,9 @@ Janta
 
 
 <button type="submit">
+
 Salvar
+
 </button>
 
 
@@ -142,18 +224,26 @@ Salvar
 <h2>Lista</h2>
 
 
+
 <table border="1">
 
 
 <tr>
 
 <th>Número</th>
+
 <th>Nome</th>
+
 <th>Dia</th>
+
 <th>Data</th>
+
 <th>Café</th>
+
 <th>Almoço</th>
+
 <th>Janta</th>
+
 <th>Ações</th>
 
 </tr>
@@ -168,11 +258,15 @@ Salvar
 
 <td>{{m.numero}}</td>
 
+
 <td>{{m.nome}}</td>
+
 
 <td>{{m.dia}}</td>
 
+
 <td>{{m.data}}</td>
+
 
 
 <td>
@@ -184,6 +278,7 @@ Salvar
 </td>
 
 
+
 <td>
 {% if m.almoco %}
 ✓
@@ -193,6 +288,7 @@ Salvar
 </td>
 
 
+
 <td>
 {% if m.janta %}
 ✓
@@ -200,6 +296,7 @@ Salvar
 -
 {% endif %}
 </td>
+
 
 
 <td>
@@ -217,6 +314,7 @@ Excluir
 </button>
 </a>
 
+
 </td>
 
 
@@ -224,6 +322,7 @@ Excluir
 
 
 {% endfor %}
+
 
 
 </table>
