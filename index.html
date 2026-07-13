@@ -20,6 +20,9 @@
 <h1>Controle de Arranchamento</h1>
 
 
+<hr>
+
+
 <h2>Filtro por dia</h2>
 
 <form method="get" action="/">
@@ -27,15 +30,16 @@
 <select name="dia">
 
 <option value="Todos">Todos</option>
-<option value="Segunda">Segunda</option>
-<option value="Terça">Terça</option>
-<option value="Quarta">Quarta</option>
-<option value="Quinta">Quinta</option>
-<option value="Sexta">Sexta</option>
-<option value="Sábado">Sábado</option>
-<option value="Domingo">Domingo</option>
+<option>Segunda</option>
+<option>Terça</option>
+<option>Quarta</option>
+<option>Quinta</option>
+<option>Sexta</option>
+<option>Sábado</option>
+<option>Domingo</option>
 
 </select>
+
 
 <button type="submit">
 Filtrar
@@ -53,6 +57,10 @@ Filtrar
 <form action="/adicionar" method="post">
 
 
+<label>Número:</label>
+
+<br>
+
 <input 
 type="text"
 name="numero"
@@ -64,6 +72,10 @@ required
 <br><br>
 
 
+<label>Nome:</label>
+
+<br>
+
 <input 
 type="text"
 name="nome"
@@ -74,6 +86,10 @@ required
 
 <br><br>
 
+
+<label>Dia:</label>
+
+<br>
 
 <select name="dia">
 
@@ -91,9 +107,9 @@ required
 <br><br>
 
 
-<label>
-Data:
-</label>
+<label>Data:</label>
+
+<br>
 
 <input 
 type="date"
@@ -106,20 +122,35 @@ required
 
 
 <label>
+
 <input type="checkbox" name="cafe">
+
 Café
+
 </label>
 
 
+<br>
+
+
 <label>
+
 <input type="checkbox" name="almoco">
+
 Almoço
+
 </label>
 
 
+br>
+
+
 <label>
+
 <input type="checkbox" name="janta">
+
 Janta
+
 </label>
 
 
@@ -127,7 +158,9 @@ Janta
 
 
 <button type="submit">
+
 Salvar
+
 </button>
 
 
@@ -139,7 +172,8 @@ Salvar
 
 
 
-<h2>Lista</h2>
+<h2>Lista de Arranchamento</h2>
+
 
 
 <table border="1">
@@ -148,12 +182,19 @@ Salvar
 <tr>
 
 <th>Número</th>
+
 <th>Nome</th>
+
 <th>Dia</th>
+
 <th>Data</th>
+
 <th>Café</th>
+
 <th>Almoço</th>
+
 <th>Janta</th>
+
 <th>Ações</th>
 
 </tr>
@@ -168,38 +209,51 @@ Salvar
 
 <td>{{m.numero}}</td>
 
+
 <td>{{m.nome}}</td>
 
+
 <td>{{m.dia}}</td>
+
 
 <td>{{m.data}}</td>
 
 
+
 <td>
+
 {% if m.cafe %}
 ✓
 {% else %}
 -
 {% endif %}
+
 </td>
 
 
+
 <td>
+
 {% if m.almoco %}
 ✓
 {% else %}
 -
 {% endif %}
+
 </td>
 
 
+
 <td>
+
 {% if m.janta %}
 ✓
 {% else %}
 -
 {% endif %}
+
 </td>
+
 
 
 <td>
@@ -216,6 +270,7 @@ Editar
 Excluir
 </button>
 </a>
+
 
 </td>
 

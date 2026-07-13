@@ -23,6 +23,34 @@
 <hr>
 
 
+<h2>Filtro por dia</h2>
+
+<form method="get" action="/">
+
+<select name="dia">
+
+<option value="Todos">Todos</option>
+<option>Segunda</option>
+<option>Terça</option>
+<option>Quarta</option>
+<option>Quinta</option>
+<option>Sexta</option>
+<option>Sábado</option>
+<option>Domingo</option>
+
+</select>
+
+
+<button type="submit">
+Filtrar
+</button>
+
+</form>
+
+
+<hr>
+
+
 <h2>Adicionar Militar</h2>
 
 
@@ -93,44 +121,9 @@ required
 <br><br>
 
 
-<label>Alojamento:</label>
-
-<br>
-
-<input 
-type="text"
-name="alojamento"
-placeholder="Alojamento"
->
-
-
-<br><br>
-
-
-<label>Status:</label>
-
-<br>
-
-<select name="status">
-
-<option>Confirmado</option>
-
-<option>Pendente</option>
-
-<option>Cancelado</option>
-
-</select>
-
-
-<br><br>
-
-
 <label>
 
-<input 
-type="checkbox"
-name="cafe"
->
+<input type="checkbox" name="cafe">
 
 Café
 
@@ -142,25 +135,19 @@ Café
 
 <label>
 
-<input 
-type="checkbox"
-name="almoco"
->
+<input type="checkbox" name="almoco">
 
 Almoço
 
 </label>
 
 
-<br>
+br>
 
 
 <label>
 
-<input 
-type="checkbox"
-name="janta"
->
+<input type="checkbox" name="janta">
 
 Janta
 
@@ -202,10 +189,6 @@ Salvar
 
 <th>Data</th>
 
-<th>Alojamento</th>
-
-<th>Status</th>
-
 <th>Café</th>
 
 <th>Almoço</th>
@@ -236,11 +219,6 @@ Salvar
 <td>{{m.data}}</td>
 
 
-<td>{{m.alojamento}}</td>
-
-
-<td>{{m.status}}</td>
-
 
 <td>
 
@@ -253,6 +231,7 @@ Salvar
 </td>
 
 
+
 <td>
 
 {% if m.almoco %}
@@ -262,6 +241,7 @@ Salvar
 {% endif %}
 
 </td>
+
 
 
 <td>
